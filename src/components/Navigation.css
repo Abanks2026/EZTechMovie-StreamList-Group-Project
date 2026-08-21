@@ -1,0 +1,21 @@
+.navBar {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.navBar a {
+    text-decoration: none;
+    margin: 0 8px;
+    color: navy;
+    font-weight: bold;
+}
+
+.navBar a:not(:last-child)::after {
+    content: " •";
+    margin-left: 8px;
+    color: black;
+}
+
+.navBar a:hover {
+    color: red;
+}

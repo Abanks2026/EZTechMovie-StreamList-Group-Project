@@ -8,12 +8,17 @@ import {
   FaCrown,
 } from "react-icons/fa";
 
+import { useNavigate } from "react-router-dom";
+
 function Cart({
   cart,
   removeFromCart,
+  clearCart,
   increaseQuantity,
   decreaseQuantity,
 }) {
+
+  const navigate = useNavigate();
 
   // React icons for the four subscription products
   function getSubscriptionIcon(item) {
@@ -33,6 +38,16 @@ function Cart({
 
   function isSubscription(item) {
     return item.id >= 1 && item.id <= 4;
+  }
+
+  function handleClearCart() {
+    const confirmed = window.confirm(
+      "Are you sure you want to remove all items from your cart?"
+    );
+
+    if (confirmed) {
+      clearCart();
+    }
   }
 
   const totalPrice = cart.reduce(
@@ -201,6 +216,23 @@ function Cart({
             ${totalPrice.toFixed(2)}
           </strong>
         </p>
+
+        <button
+          type="button"
+          className="clear-cart-button"
+          onClick={handleClearCart}
+        >
+          <FaTrash />
+          Clear Cart
+        </button>
+
+        <button
+          type="button"
+          className="checkout-button"
+          onClick={() => navigate("/checkout")}
+        >
+          Checkout
+        </button>
 
       </div>
 
